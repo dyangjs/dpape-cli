@@ -6,7 +6,7 @@ Link to: https://github.com/dyangjs/dyang-cli
 
 ## Install
 ```shell
-npm i vue-dyangui -S
+npm i dyang-cli -g
 ```
 ## Quick Start （初始化脚手架安装项目依赖）
 ```shell
