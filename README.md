@@ -1,9 +1,9 @@
-Links
-
-Homepage and documentation
-
-Link to: https://github.com/dyangjs/dyang-cli
-
+## Links
+- Homepage and documentation
+  - Link to: https://github.com/dyangjs/dyang-cli
+- Logs
+  - Link to: https://github.com/dyangjs/dyang-cli/blob/master/logs.md
+  
 ## Install
 ```shell
 npm i dyang-cli -g
