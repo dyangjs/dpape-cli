@@ -1,0 +1,49 @@
+{
+    "name": "dyang-cli",
+    "version": "0.1.2",
+    "description": "dyang cli",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "node ./build/index.js && node ./build/uglify.js",
+        "dev": "node ./build/index.js"
+    },
+    "repository": {
+        "type": "git"
+    },
+    "keywords": [
+        "cli",
+        "vue-dyangui",
+        "dyang-cli"
+    ],
+    "browserslist": [
+        "last 10 Chrome versions",
+        "last 5 Firefox versions",
+        "Safari >= 6",
+        "ie > 8"
+    ],
+    "files": [
+        "dist",
+        "build-files",
+        "webpack"
+    ],
+    "bin": {
+        "dyang": "dist/index.js"
+    },
+    "author": "damon;jie yang;dyang",
+    "homepage": "https://cli.dyang.club",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/inquirer": "^6.5.0",
+        "@types/md5": "^2.1.33",
+        "@types/node": "^12.7.12",
+        "uglify-js": "^3.6.1"
+    },
+    "dependencies": {
+        "inquirer": "^7.0.0",
+        "io-spin": "^0.4.1",
+        "md5": "^2.2.1",
+        "commander": "^3.0.2",
+        "node-xlsx": "^0.15.0",
+        "querystring": "^0.2.0"
+    }
+}
