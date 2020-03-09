@@ -24,6 +24,9 @@ Mac系统可能会存在权限问题，您可以授权npm全局安装目录:sudo
 a) 支持项目代码<% example %>导出
 b) 个性化创建项目
 c) 第三方资源管理
+d) Vue-router配置自动生成
+e) 系统化处理webpack开发配置
+f) 开发阶段包资源共享
 ```
 
 ## Options
