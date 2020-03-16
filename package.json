@@ -1,6 +1,6 @@
 {
     "name": "dyang-cli",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "dyang cli",
     "main": "dist/index.js",
     "scripts": {

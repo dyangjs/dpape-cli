@@ -21,8 +21,12 @@ export function GetProjectConfig(){
  * 获取当前局域网Ip地址
  */
 export function GetCurrentIpAddress(){
-    var networkInterfaces = os.networkInterfaces();
-    const ip = networkInterfaces['en0'][1].address;
+    let addressInfo:any = os.networkInterfaces().en0;
+    if (!addressInfo) addressInfo = os.networkInterfaces();
+    const keys = Object.keys(addressInfo);
+    const addressKey = keys[0];
+    addressInfo = addressInfo[addressKey];
+    const ip = addressInfo[1].address
     return ip;
 }
 
