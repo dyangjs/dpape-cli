@@ -60,18 +60,19 @@ export async function createProjectJsonFile(mainEntryPath:string,config?:buildPr
     let defaultConfig = {
         uuid:uuid,
         env:["APP","H5"],
-        devServerHost:"127.0.0.1",
+        requiredImport:{
+            'vue-dyangui':"lib",
+            'vant':"es"
+        },
         devServerPort:"8080",
         hasNotFoundPage:false,
         type:data.projectType || 'SPA',
+        BASE_API_DEV:"'http://dev.example.com'",
+        BASE_API_PROD:"'http://prod.example.com'",
         dev:{
-            BASE_API:"'http://example.com'",
-            DOWNLOAD_PATH:"'resource'",
             VERSION:"'1.0.0.0'"
         },
         prod:{
-            BASE_API:"'https://example.com'",
-            downloadPath:"'resource'",
             VERSION:"'1.0.0.0'"
         },
         common:{

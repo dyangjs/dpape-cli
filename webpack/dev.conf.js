@@ -11,7 +11,8 @@ const devServer = {
     hot: true,
     open: true
 }
-const env = config.dev;
+let env = config.dev;
+env.BASE_API = config.BASE_API_DEV;
 /** 读取配置End */
 
 module.exports = merge(baseConfig, {

@@ -6,7 +6,6 @@ import { createProjectJsonFile } from './core/create';
 import { BuildFileDist, FixProjetFiles } from './core/build';
 import server from './core/server';
 import { Install, ExportTranslate, LangList } from './core/tools';
-import { whitelistData } from './core/tools';
 import { spawn,spawnSync } from 'child_process';
 import * as path from 'path';
 
@@ -67,23 +66,12 @@ const createProject = () => {
 
 /** 输出当前版本信息 */
 const viewVersion = () => {
-    console.log('Version 0.1.2')
+    console.log('Version 0.1.4')
 }
 
 /** 开发模式启动web服务 */
 const runDevSever = () => {
     server();
-}
-
-/** 查看白名单 */
-const whitelist = ()=>{
-    let whitelist = '';
-    for (const key in whitelistData) {
-        const v = whitelistData[key];
-        if(typeof v === 'number') continue;
-        whitelist += `- ${v}\r\n`;
-    }
-    console.log(`Current Package Whitelist:\r\n${whitelist}`);
 }
 
 const viewLangList = ()=>{
@@ -98,19 +86,12 @@ const viewLangList = ()=>{
 
 /** 公共组件库更新到最新 */
 const UpgradeUiComponent = () =>{
-    let whitelist = new Array();
-    for (const key in whitelistData) {
-        const v = whitelistData[key];
-        if(typeof v === 'number') continue;
-        whitelist.push(v);
-    };
-    
     const isWin = process.platform == 'win32';
     const prefix = isWin ? 'npm.cmd' : 'npm';
     /** 安装包资源 */
     console.log('Start Upgrade ...');
     let params = ['i'];
-    params = [...params,...whitelist];
+    params = [...params];
     params = [...params,...['-S']];
     const cmd = spawn(prefix,params,{
         cwd:path.resolve(__dirname,`../`),
@@ -155,7 +136,6 @@ program
   .option('-s, --start', 'Run dev server', runDevSever)
   .option('-b, --build', 'Build the project', BuildFileDist)
   .option('-i, --install','Install package resources:-i vue@2.0.0.0 or -i vue',Install)
-  .option('-w, --whitelist', 'Show the packages that are allowed', whitelist)
   .option('-t, --translate', 'Export Project <% example %>', ExportTranslate)
   .option('-l, --lang', 'Show Translate Support Langs', viewLangList)
   .option('-r, --repair', 'Repair Project Files', FixProjetFiles)

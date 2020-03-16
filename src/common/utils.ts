@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import * as os from 'os';
 /** 获取项目配置信息 */
 export function GetProjectConfig(){
     const currentPath = process.cwd();
@@ -16,6 +17,17 @@ export function GetProjectConfig(){
     }
 }
 
+/**
+ * 获取当前局域网Ip地址
+ */
+export function GetCurrentIpAddress(){
+    var networkInterfaces = os.networkInterfaces();
+    const ip = networkInterfaces['en0'][1].address;
+    return ip;
+}
+
+
 export default {
-    GetProjectConfig
+    GetProjectConfig,
+    GetCurrentIpAddress
 }

@@ -6,7 +6,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const dyangTemp = process.env.uuid;
 const config = require(`./${dyangTemp}/webpack.json`);
 /** 读取配置 */
-const env = config.prod;
+let env = config.dev;
+env.BASE_API = config.BASE_API_PROD;
 /** 读取配置End */
 module.exports = merge(baseConfig, {
     mode: 'production',
@@ -60,7 +61,7 @@ module.exports = merge(baseConfig, {
                 options: {
                     limit: 1024,
                     name: './assets/meta/[name].[hash:7].[ext]',
-                    publicPath: '../'
+                    publicPath: './'
 
                 }
             }

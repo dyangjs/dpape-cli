@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { GetProjectConfig } from '../common/utils';
+import { GetProjectConfig, GetCurrentIpAddress } from '../common/utils';
 import { spawn } from 'child_process';
 var md5 = require('md5');
 interface routerItem {
@@ -36,6 +36,8 @@ export function BuildConfigInfo(key:string){
     if(!fs.existsSync(webpackPath)){
         fs.mkdirSync(webpackPath,{recursive:!0});
     }
+    const ip = GetCurrentIpAddress();
+    config.devServerHost = ip;
     fs.writeFileSync(path.join(webpackPath,'./webpack.json'),JSON.stringify(config,null,'\t'),'utf-8');
     /** 构建Base Vue Filter */
     const filterPath = path.resolve(__dirname,'../../build-files/main-filter.js');

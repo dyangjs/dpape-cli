@@ -7,15 +7,6 @@ import * as xlsx from 'node-xlsx';
 import * as http from 'http';
 import * as md5 from 'md5';
 import * as querystring from 'querystring';
-import { Interface } from 'readline';
-/** 包资源白名单 */
-export enum whitelistData {
-    "vant",
-    "element-ui",
-    "view-design",
-    "vue-dyangui"
-}
-
 export enum LangList {
     "zh",
     "en",
@@ -80,12 +71,6 @@ export function Install(){
     const uuid = config.uuid;
     const packageName:string | undefined = process.argv[3];
     if(packageName){
-        const value = packageName.split('@');
-        const name = value[0];        
-        if(whitelistData[name] === undefined) {
-            console.log(`Package Whitelist Not Found The Package [${name}]. You can view the whitelist for -w`);
-            return;
-        }
         if(!uuid) {
             console.log('Project UUID Not Found in Config File, Please Check');
             return;
@@ -100,13 +85,8 @@ export function Install(){
         return;
     }
     let packagesList = "";
-    for (const name in packages) {
-        if (!packages.hasOwnProperty(name) || whitelistData[name] === undefined) continue;        
+    for (const name in packages) {     
         const version = packages[name];
-        if(whitelistData[name] === undefined) {
-            console.log(`Package Whitelist Not Found The Package [${name}]. You can view the whitelist for -w`);
-            continue;
-        }
         packagesList += `${name}@${version} `
     }
     startInstall(uuid,packagesList);

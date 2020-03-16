@@ -20,7 +20,6 @@ for (const key in aliasConfig) {
     const v = aliasConfig[key];
     alias[key] = path.resolve(`${currentPath}/${mainPath}/${v}`);
 }
-
 const aliaList = [{
         name: "vue$",
         path: "/vue/dist/vue.runtime.esm.js"
@@ -28,22 +27,6 @@ const aliaList = [{
     {
         name: "vuex$",
         path: "/vuex/dist/vuex.js"
-    },
-    {
-        name: "vue-dyangui",
-        path: "/vue-dyangui"
-    },
-    {
-        name: "element-ui",
-        path: "/element-ui"
-    },
-    {
-        name: "view-design",
-        path: "/view-design"
-    },
-    {
-        name: "vant",
-        path: "/vant"
     },
     {
         name: "vconsole$",
@@ -73,6 +56,11 @@ aliaList.map(v => {
 alias["dyang-router$"] = path.join(currentPath, `./.temp/routers.js`);
 alias["dyang-ajax$"] = path.join(currentPath, `./.temp/request.js`);
 alias["dyang-filter$"] = path.join(currentPath, `./.temp/filter.js`);
+const packages = allConfig.packages || new Object();
+const packageNanes = Object.keys(packages);
+packageNanes.map(name => {
+    alias[name] = path.resolve(__dirname, `../.resource/${allConfig.uuid}/node_modules/${name}`);
+});
 let entryMain = {
     app: ["babel-polyfill", path.join(currentPath, `./.temp/main.js`)]
 }
@@ -94,6 +82,7 @@ if (projectType === 'MPA') {
         }))
     });
 };
+let requiredImportList = typeof allConfig.requiredImport === 'object' ? Object.keys(allConfig.requiredImport) : new Array();
 /** 读取配置End */
 module.exports = {
     entry: entryMain,
@@ -139,12 +128,9 @@ module.exports = {
                     /* 是否全局引入默认为true,需要按需引入设置为false*/
                     global: false,
                     /** 按需引入目录名称 默认lib*/
-                    libraryDirectory: {
-                        "vant": 'es',
-                        "vue-dyangui": 'lib'
-                    },
+                    libraryDirectory: allConfig.requiredImport,
                     /* 组件库名称 默认vue-dyangui*/
-                    libraryName: ["vant", "vue-dyangui"]
+                    libraryName: requiredImportList
                 }
             }, {
                 test: /\.(jsx|tsx|js|ts|vue)$/,
