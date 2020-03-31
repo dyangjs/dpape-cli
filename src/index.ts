@@ -66,7 +66,7 @@ const createProject = () => {
 
 /** 输出当前版本信息 */
 const viewVersion = () => {
-    console.log('Version 0.1.5')
+    console.log('Version 0.1.12')
 }
 
 /** 开发模式启动web服务 */

@@ -4,13 +4,15 @@ var webpack = require('webpack');
 var baseConfig = require('./base.conf');
 const dyangTemp = process.env.uuid;
 const config = require(`./${dyangTemp}/webpack.json`);
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 /** 读取配置 */
 const devServer = {
     port: config.devServerPort,
-    host: config.devServerHost,
+    host: '0.0.0.0',
     hot: true,
-    open: true
+    open: false
 }
+var openUrl = 'http://localhost:' + config.devServerPort;
 let env = config.dev;
 env.BASE_API = config.BASE_API_DEV;
 /** 读取配置End */
@@ -76,6 +78,9 @@ module.exports = merge(baseConfig, {
         ]
     },
     plugins: [
+        new OpenBrowserPlugin({
+            url: openUrl
+        }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({
             'process.env': env

@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const dyangTemp = process.env.uuid;
 const config = require(`./${dyangTemp}/webpack.json`);
 /** 读取配置 */
-let env = config.dev;
+let env = config.prod;
 env.BASE_API = config.BASE_API_PROD;
 /** 读取配置End */
 module.exports = merge(baseConfig, {
