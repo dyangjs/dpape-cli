@@ -13,7 +13,8 @@ const aliasConfig = commontConfig.alias;
 const mainPath = commontConfig.mainPath || 'src';
 const currentPath = allConfig.currentPath || process.cwd();
 var alias = {
-    '@src': path.resolve(`${currentPath}/${mainPath}`)
+    '@src': path.resolve(`${currentPath}/${mainPath}`),
+    '@pages': path.resolve(`${currentPath}/${mainPath}/pages`)
 };
 for (const key in aliasConfig) {
     if (!aliasConfig.hasOwnProperty(key)) continue;
@@ -43,6 +44,10 @@ const aliaList = [{
     {
         name: "axios$",
         path: "/axios"
+    },
+    {
+        name: "vue-dyangui",
+        path: "/vue-dyangui"
     }
 ];
 const baseModulePath = path.resolve(__dirname, './node_modules');
@@ -134,10 +139,10 @@ module.exports = {
                 }
             }, {
                 test: /\.(jsx|tsx|js|ts|vue)$/,
-                loader: path.resolve(__dirname, './tran.js')
+                loader: 'uix-template-loader'
             }, {
                 test: /\.(jsx|tsx|js|ts|vue)$/,
-                loader: path.resolve(__dirname, './precompile.js')
+                loader: 'uix-precompile-loader'
             },
             {
                 test: /\.pdf$/,

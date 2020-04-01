@@ -61,8 +61,7 @@ export async function createProjectJsonFile(mainEntryPath:string,config?:buildPr
         uuid:uuid,
         env:["APP","H5"],
         requiredImport:{
-            'vue-dyangui':"lib",
-            'vant':"es"
+            'vue-dyangui':"lib"
         },
         devServerPort:"8080",
         hasNotFoundPage:false,
@@ -77,12 +76,7 @@ export async function createProjectJsonFile(mainEntryPath:string,config?:buildPr
         },
         common:{
             mainPath:mainPath,
-            alias:{
-                '@api': "api",
-                '@assets': "assets",
-                '@pages': "pages",
-                '@css': "css"
-            },
+            alias:{},
             appName:data.appName || '',
             timeout:15000,
             output:"dist",
